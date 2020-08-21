@@ -1,0 +1,37 @@
+server:
+  port: 8081
+spring:
+  application:
+    name: clm
+  datasource:
+    driverClassName: com.mysql.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/clm_db
+    username: root
+    password: Root@123
+
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL5InnoDBDialect
+    hibernate:
+      ddl-auto: validate
+
+  flyway:
+    url: jdbc:mysql://localhost:3306
+    schemas: clm_db
+    default-schema: clm_db
+    user: root
+    password: Root@123
+    enabled: true
+    sql-migration-prefix: V
+    repeatable-sql-migration-prefix: R
+    sql-migration-separator: __
+    sql-migration-suffixes: .sql
+
+management:
+  auditevents:
+    enabled: true
+  endpoint:
+    health:
+      enabled: true
+
