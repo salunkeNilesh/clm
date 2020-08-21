@@ -6,7 +6,6 @@ import com.org.entity.LogsEntity;
 import com.org.models.LogMessageRequestVO;
 import com.org.models.LogMessageResponseVO;
 import com.org.repository.LogsRepository;
-import com.org.service.FilterService;
 import com.org.service.MessageService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,12 +26,10 @@ public class MessageController {
     LogsRepository logsRepository;
 
     MessageService messageService;
-    FilterService filterService;
 
     @Autowired
-    public MessageController(MessageService messageService, FilterService filterService) {
+    public MessageController(MessageService messageService) {
         this.messageService = messageService;
-        this.filterService = filterService;
     }
 
 
@@ -67,9 +64,6 @@ public class MessageController {
 
     @GetMapping("/filterLogs")
     public ResponseEntity<?> filterLogs(@RequestParam Map<String, Object> params) {
-        filterService.atriskdogs();
-
-
         Collection<LogsEntity> result = (Collection<LogsEntity>) messageService.filterLogs(params);
 
         if (result.size() == 0) {

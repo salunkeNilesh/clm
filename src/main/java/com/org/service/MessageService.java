@@ -39,7 +39,7 @@ public class MessageService {
 
     private JdbcTemplate jdbcTemplate;
 
-    public static final Logger logger= LoggerFactory.getLogger(FilterService.class);
+    public static final Logger logger= LoggerFactory.getLogger(MessageService.class);
 
     public void setDataSource(DataSource dataSource) {
         this.dataSource = dataSource;
@@ -52,7 +52,8 @@ public class MessageService {
         ObjectMapper mapper = new ObjectMapper();
         LogsEntity logsEntity = mapper.convertValue(requestVO, LogsEntity.class);
         LogMessageResponseVO responseVO = mapper.convertValue(logsRepository.save(logsEntity), LogMessageResponseVO.class);
-        System.out.println(responseVO);
+
+        logger.info(responseVO.toString());
 
         return responseVO;
 
