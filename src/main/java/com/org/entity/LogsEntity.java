@@ -31,5 +31,5 @@ public class LogsEntity implements Serializable {
     @Type(type = "json")
     @Column( columnDefinition = "json" )
     private Map<String,Object> message;
-    
+
 }
