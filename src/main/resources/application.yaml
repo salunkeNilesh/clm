@@ -29,9 +29,10 @@ spring:
     sql-migration-suffixes: .sql
 
 management:
-  auditevents:
-    enabled: true
-  endpoint:
-    health:
-      enabled: true
-
+  context-path: /manage
+  server:
+    port: 8082
+    endpoints:
+      web:
+        exposure:
+          include: "*"
