@@ -1,8 +1,13 @@
 package com.org.models;
 
+import lombok.Getter;
+import lombok.Setter;
+
 import java.math.BigDecimal;
 import java.util.Map;
 
+@Getter
+@Setter
 public class LogMessageResponseVO {
 
 
@@ -13,36 +18,5 @@ public class LogMessageResponseVO {
     private String applicationName;
 
     private Map<String,Object> message;
-
-    public Long getLogid() {
-        return logid;
-    }
-
-    public void setLogid(Long logid) {
-        this.logid=logid;
-    }
-    public BigDecimal getApplicationId() {
-        return applicationId;
-    }
-
-    public void setApplicationId(BigDecimal applicationId) {
-        this.applicationId = applicationId;
-    }
-
-    public String getApplicationName() {
-        return applicationName;
-    }
-
-    public void setApplicationName(String applicationName) {
-        this.applicationName = applicationName;
-    }
-
-    public Map<String,Object> getMessage() {
-        return message;
-    }
-
-    public void setMessage(Map<String,Object> message) {
-        this.message = message;
-    }
 
 }
