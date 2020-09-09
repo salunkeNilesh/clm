@@ -1,5 +1,6 @@
 server:
   port: 8081
+  #port: 9091
 spring:
   application:
     name: clm
@@ -29,9 +30,21 @@ spring:
     sql-migration-suffixes: .sql
 
 management:
-  auditevents:
-    enabled: true
-  endpoint:
-    health:
-      enabled: true
+  context-path: /manage
+  server:
+    port: 8082
+    #port: 9092
+    endpoints:
+      web:
+        exposure:
+          include: "*"
 
+eureka:
+  client:
+    service-url:
+      defaultZone: http://${registry.host:localhost}:${registry.port:8761}/eureka/
+    healthcheck:
+      enabled: true
+  instance:
+    leaseRenewalIntervalInSeconds: 1
+    leaseExpirationDurationInSeconds: 2

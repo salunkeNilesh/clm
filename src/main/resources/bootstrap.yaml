@@ -1,0 +1,12 @@
+management:
+  context-path: /manage
+  server:
+    port: 8082
+    endpoint:
+      health:
+        enabled: true
+  info:
+    app:
+      name: CLM Service
+      description: Central Logging service to store logs in database
+      version: 1.0.0

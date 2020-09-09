@@ -6,6 +6,8 @@ import com.org.entity.LogsEntity;
 import com.org.models.LogMessageRequestVO;
 import com.org.models.LogMessageResponseVO;
 import com.org.repository.LogsRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -37,6 +39,7 @@ public class MessageService {
 
     private JdbcTemplate jdbcTemplate;
 
+    public static final Logger logger= LoggerFactory.getLogger(MessageService.class);
 
     public void setDataSource(DataSource dataSource) {
         this.dataSource = dataSource;
@@ -49,7 +52,8 @@ public class MessageService {
         ObjectMapper mapper = new ObjectMapper();
         LogsEntity logsEntity = mapper.convertValue(requestVO, LogsEntity.class);
         LogMessageResponseVO responseVO = mapper.convertValue(logsRepository.save(logsEntity), LogMessageResponseVO.class);
-        System.out.println(responseVO);
+
+        logger.info(responseVO.toString());
 
         return responseVO;
 
@@ -154,8 +158,7 @@ public class MessageService {
         }
 
         sqlQuery = sqlQuery + ";";
-        System.out.println("SQL QUERY=====>");
-        System.out.println(sqlQuery);
+        logger.info("SQL Query --> {}",sqlQuery);
 
         result = getFilteredRecords(sqlQuery);
         return result;
@@ -179,10 +182,8 @@ public class MessageService {
                 Map<String, Object> jsonMap = null;
                 try {
                     jsonMap = mapper.readValue(resultSet.getString(4), Map.class);
-                    System.out.println("MAPPPPPPP");
-                    System.out.println(jsonMap);
+                    logger.info("Filtered messags(json) column : {}",jsonMap);
                 }catch (IOException e){
-                    System.out.println("Fata");
                     e.printStackTrace();
                 }
 
@@ -191,7 +192,7 @@ public class MessageService {
             }
         });
 
-
+        logger.info("Total Filtered mrecords : {}",logs.size());
         return logs;
     }
 

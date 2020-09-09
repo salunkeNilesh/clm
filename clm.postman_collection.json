@@ -1,0 +1,197 @@
+{
+	"info": {
+		"_postman_id": "48c92864-3d9a-46ca-bc86-25ddbc7d9668",
+		"name": "clm",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "health",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{protocol}}://localhost:8082/actuator/health",
+					"protocol": "{{protocol}}",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"actuator",
+						"health"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "logMessage",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"applicationId\": 1,\r\n\t\"applicationName\": \"demo\",\r\n\t\"message\": {\r\n\t\t\"logId\": 123456,\r\n\t\t\"timeMillis\": 1551908790726,\r\n\t\t\"datetime\": \"2015-11-01 17:05:27 -0700\",\r\n\t\t\"thread\": \"http-nio-8080-exec-2\",\r\n\t\t\"pid\": 216,\r\n\t\t\"threadId\": 21,\r\n\t\t\"threadPriority\": 5,\r\n\t\t\"level\": \"ERROR\",\r\n\t\t\"loggerName\": \"org.sample.Service1\",\r\n\t\t\"message\": \"Log this statement\",\r\n\t\t\"service\": \"java-app\",\r\n\t\t\"additionalInfo\": {\r\n\t\t\t\"field1\": \"ABC\",\r\n\t\t\t\"field2\": \"ABC\"\r\n\r\n\t\t}\r\n\t}\r\n\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{protocol}}://localhost:8081/logMessage",
+					"protocol": "{{protocol}}",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"logMessage"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "greeeting",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{protocol}}://localhost:8081/greeting?name=nilesh!",
+					"protocol": "{{protocol}}",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"greeting"
+					],
+					"query": [
+						{
+							"key": "name",
+							"value": "nilesh!"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "logMessage - GET",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{protocol}}://localhost:8081/logMessage?appId=1&appName=demo&message=Log this statement&timeMillis=1551908790726&level=ERROR&pid=216&logId=123456",
+					"protocol": "{{protocol}}",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"logMessage"
+					],
+					"query": [
+						{
+							"key": "appId",
+							"value": "1"
+						},
+						{
+							"key": "appName",
+							"value": "demo"
+						},
+						{
+							"key": "message",
+							"value": "Log this statement"
+						},
+						{
+							"key": "timeMillis",
+							"value": "1551908790726"
+						},
+						{
+							"key": "level",
+							"value": "ERROR"
+						},
+						{
+							"key": "pid",
+							"value": "216"
+						},
+						{
+							"key": "logId",
+							"value": "123456"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "filterMessage- GET",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{protocol}}://localhost:8081/filterLogs?appName=demo&message=his statement&timeMillis=1551908790726&level=ERROR&pid=216&logId=123456",
+					"protocol": "{{protocol}}",
+					"host": [
+						"localhost"
+					],
+					"port": "8081",
+					"path": [
+						"filterLogs"
+					],
+					"query": [
+						{
+							"key": "appName",
+							"value": "demo"
+						},
+						{
+							"key": "message",
+							"value": "his statement"
+						},
+						{
+							"key": "timeMillis",
+							"value": "1551908790726"
+						},
+						{
+							"key": "level",
+							"value": "ERROR"
+						},
+						{
+							"key": "pid",
+							"value": "216"
+						},
+						{
+							"key": "logId",
+							"value": "123456"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "info",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{protocol}}://localhost:8082/actuator/info",
+					"protocol": "{{protocol}}",
+					"host": [
+						"localhost"
+					],
+					"port": "8082",
+					"path": [
+						"actuator",
+						"info"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
